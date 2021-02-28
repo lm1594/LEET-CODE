@@ -1,5 +1,7 @@
 package explore.learn.Arrays.Introduction;
 
+import java.util.Arrays;
+
 /**
  * LEET CODE
  *  - Explore.Learn.Arrays.Introduction
@@ -94,6 +96,58 @@ public class Solution {
 		
         return resultCnt;
     }
+	
+	/**
+	 * Squares of a Sorted Array
+	 *  - 문제: Given an integer array nums sorted in non-decreasing order, return an array of the squares of each number sorted in non-decreasing order.
+	 *  
+	 *  Example 1:
+
+		Input: nums = [-4,-1,0,3,10]
+		Output: [0,1,9,16,100]
+		Explanation: After squaring, the array becomes [16,1,0,9,100].
+		After sorting, it becomes [0,1,9,16,100].
+
+		Example 2:
+		
+		Input: nums = [-7,-3,2,3,11]
+		Output: [4,9,9,49,121]
+	 * 
+	 * Constraints:
+
+		1 <= nums.length <= 104
+		-104 <= nums[i] <= 104
+		nums is sorted in non-decreasing order.
+	 * 
+	 * HINT
+	 *  - Follow up: Squaring each element and sorting the new array is very trivial, could you find an O(n) solution using a different approach?
+	 */
+	public static int[] sortedSquares(int[] nums) {
+        // 일반적인 정렬 알고리즘을 이용한 풀이 - 버블정렬 O(n2)
+//		int temp = 0;
+//		for(int i=0 ; i<nums.length ; i++) {
+//			nums[i] = (int) Math.pow(nums[i], 2);
+//		}
+//		
+//		for(int i=0 ; i<nums.length ; i++) {
+//			for(int j=i ; j < nums.length ; j++) {
+//				if(nums[i] > nums[j]) {
+//					temp = nums[i];
+//					nums[i] = nums[j];
+//					nums[j] = temp;
+//				}
+//			}
+//		}
+		
+		// Arrays.sort 함수 이용한 풀이 (Merge sort + Insertion sort인 Tim sort) - O(n log (n))
+		for(int i=0 ; i<nums.length ; i++) {
+			nums[i] = (int) Math.pow(nums[i], 2);
+		}
+		
+		Arrays.sort(nums);
+		
+		return nums;
+    }
 
 	public static void main(String[] args) {
 		// Max Consecutive Ones
@@ -101,8 +155,12 @@ public class Solution {
 		// System.out.println(findMaxConsecutiveOnes(inputArr));
 		
 		// Find Numbers with Even Number of Digits
-		int[] inputArr = {555,901,482,1771};
-		System.out.println(findNumbers(inputArr));
+		// int[] inputArr = {555,901,482,1771};
+		// System.out.println(findNumbers(inputArr));
+		
+		// Squares of a Sorted Array
+		int[] inputArr = {-7,-3,2,3,11};
+		sortedSquares(inputArr);
 	}
 
 }
