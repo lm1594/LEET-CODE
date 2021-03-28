@@ -44,35 +44,52 @@ public class Solution {
 	 */
 	public static int[] replaceElements(int[] arr) {
 		
-		int maxVal = 0;
+//		int maxVal = 0;
+//		
+//		if(arr == null) {
+//			return arr;
+//		}
+//		
+//		if (arr.length < 1) {
+//			arr[0] = -1;
+//			return arr;
+//		}
+//		
+//		for (int i=0 ; i<arr.length ; i++) {
+//			maxVal = arr[arr.length-1];
+//			for (int j=arr.length-1 ; j>i ; j--) {
+//				if(arr[j]>maxVal) {
+//					maxVal = arr[j];
+//				}
+//			}
+//			arr[i] = maxVal;
+//			if(i == arr.length-1) {
+//				arr[i] = -1;
+//			}
+//		}
+//		
+//		for (int num : arr) {
+//			System.out.println(num);
+//		}
+//		
+//		return arr;
 		
-		if(arr == null) {
-			return arr;
+		// 개선 답안
+		if(arr.length==1) {
+			return new int[]{-1};
 		}
-		
-		if (arr.length < 1) {
-			arr[0] = -1;
-			return arr;
-		}
-		
-		for (int i=0 ; i<arr.length ; i++) {
-			maxVal = arr[arr.length-1];
-			for (int j=arr.length-1 ; j>i ; j--) {
-				if(arr[j]>maxVal) {
-					maxVal = arr[j];
-				}
-			}
-			arr[i] = maxVal;
-			if(i == arr.length-1) {
-				arr[i] = -1;
-			}
-		}
-		
-		for (int num : arr) {
-			System.out.println(num);
-		}
-		
-		return arr;
+			
+		int max=Integer.MIN_VALUE;
+        int a[]=new int[arr.length];
+	    
+	    for(int i=arr.length-2 ; i>=0 ; i--){
+	    	a[i]=Math.max(arr[i+1],max);
+	    	max=Math.max(arr[i+1],max);
+	    }
+	    
+	    a[arr.length-1]=-1;
+	    
+	    return a;
     }
 	
 	public static void main(String[] args) {
